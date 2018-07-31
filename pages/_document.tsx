@@ -2,6 +2,21 @@ import Document, {Head, Main, NextScript} from 'next/document'
 import {ServerStyleSheet} from 'styled-components'
 
 // -------------------------------------------------------------
+// Components.
+// -------------------------------------------------------------
+
+const Meta = () => {
+  return (
+    <>
+      <link rel="shortcut icon" href="/static/favicon.ico?v=0001" />
+
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Cloudy Build</title>
+    </>
+  )
+}
+
+// -------------------------------------------------------------
 // Document.
 // -------------------------------------------------------------
 
@@ -19,7 +34,7 @@ export default class extends Document {
     return (
       <html>
         <Head>
-          <title>Cloudy Build</title>
+          <Meta />
           {this.props.styleTags}
         </Head>
         <body>
