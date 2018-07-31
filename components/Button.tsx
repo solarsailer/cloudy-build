@@ -25,8 +25,9 @@ const Button = styled.button`
 // Export.
 // -------------------------------------------------------------
 
-type Params = {children: string}
+type ButtonType = 'button' | 'submit' | 'reset'
+type Params = {type: ButtonType; children: string}
 
-export default ({children}: Params) => {
-  return <Button type="submit">{children}</Button>
+export default (props: Params) => {
+  return <Button type={props.type}>{props.children}</Button>
 }
