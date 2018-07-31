@@ -1,6 +1,6 @@
 {
   "name": "cloudy-build",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Quick access interface for Unity Cloud Build.",
   "license": "MIT",
   "private": true,
