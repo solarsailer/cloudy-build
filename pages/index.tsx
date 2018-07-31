@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
-const Main = styled.main`
-  color: yellowgreen;
-`
+// -------------------------------------------------------------
+// Components.
+// -------------------------------------------------------------
 
-export default () => <Main>Hello Unity Cloud Build!</Main>
+export default () => <p>Hello Unity Cloud Build!</p>
