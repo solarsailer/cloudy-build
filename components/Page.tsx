@@ -1,7 +1,21 @@
+import styled from 'styled-components'
+
+// -------------------------------------------------------------
+// Components.
+// -------------------------------------------------------------
+
+const Page = styled.div`
+  padding: 1.5rem;
+`
+
+// -------------------------------------------------------------
+// Export.
+// -------------------------------------------------------------
+
 export default ({children}) => {
   return (
-    <div className="page" id="page">
+    <Page className="page" id="page">
       {children}
-    </div>
+    </Page>
   )
 }
