@@ -2,6 +2,12 @@ import Document, {Head, Main, NextScript} from 'next/document'
 import {ServerStyleSheet} from 'styled-components'
 
 // -------------------------------------------------------------
+// Global styles.
+// -------------------------------------------------------------
+
+import '../styles/global/_manifest'
+
+// -------------------------------------------------------------
 // Components.
 // -------------------------------------------------------------
 
