@@ -1,3 +1,4 @@
+import {ChangeEventHandler} from 'react'
 import styled from 'styled-components'
 import {rgba, tint} from 'polished'
 
@@ -70,12 +71,21 @@ const Description = styled.p`
 
 interface Parameters {
   id: string
+  value?: string
   children: string
   description?: string | JSX.Element
   placeholder?: string
+  onChange?: ChangeEventHandler<HTMLInputElement>
 }
 
-export default ({children, description, id, placeholder}: Parameters) => {
+export default ({
+  children,
+  description,
+  id,
+  value,
+  placeholder,
+  onChange
+}: Parameters) => {
   return (
     <Wrapper>
       <TopRow>
@@ -94,6 +104,8 @@ export default ({children, description, id, placeholder}: Parameters) => {
           name={id}
           id={id}
           placeholder={placeholder}
+          value={value}
+          onChange={onChange}
         />
       </p>
 
