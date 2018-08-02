@@ -12,7 +12,8 @@
   "keywords": [],
   "main": "index.js",
   "scripts": {
-    "start": "micro-dev",
+    "start": "micro-dev --port 3001",
+    "dev": "micro-dev --silent --cold --port 3001",
     "prod": "micro"
   },
   "dependencies": {
