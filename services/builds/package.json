@@ -4,7 +4,7 @@
   "description": "Micro Service for Cloudy Build.",
   "license": "MIT",
   "private": true,
-  "repository": "https://github.com/solarsailer/gloomy-build/",
+  "repository": "https://github.com/solarsailer/cloudy-build/",
   "author": {
     "name": "Matthieu Oger",
     "url": "https://solarsailer.net/"
