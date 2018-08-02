@@ -1,3 +1,5 @@
+import Router from 'next/router'
+
 // -------------------------------------------------------------
 // Helpers.
 // -------------------------------------------------------------
@@ -16,16 +18,24 @@ function convertFormElements(elements) {
 // Components.
 // -------------------------------------------------------------
 
-export default ({onReady, children}) => {
-  function handleSubmit(e) {
-    e.preventDefault()
+function handleSubmit(e) {
+  e.preventDefault()
 
-    const target = e.target
-    if (target.elements) {
-      const result = convertFormElements(target.elements)
-      onReady(result)
-    }
+  const target = e.target
+  const pathname = new URL(target.action).pathname
+
+  let query = {}
+  if (target.elements) {
+    query = convertFormElements(target.elements)
   }
 
-  return <form onSubmit={handleSubmit}>{children}</form>
+  Router.push({pathname, query})
+}
+
+export default ({children, action}) => {
+  return (
+    <form onSubmit={handleSubmit} action={action}>
+      {children}
+    </form>
+  )
 }
