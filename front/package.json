@@ -12,6 +12,8 @@
   "keywords": [],
   "scripts": {
     "start": "next",
+    "start:services": "concurrently 'cd ../services/builds/; yarn dev' 'cd ../services/share/; yarn dev'",
+    "boot": "concurrently --kill-others 'yarn start' 'yarn start:services'",
     "build": "next build",
     "prod": "next build && next start"
   },
