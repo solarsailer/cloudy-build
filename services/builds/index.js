@@ -1,15 +1,9 @@
-const querystring = require('querystring')
-const url = require('url')
-
+const parseRequest = require('../lib/params')
 const getBuilds = require('./src/builds')
 
 // -------------------------------------------------------------
 // Module.
 // -------------------------------------------------------------
-
-function parseRequest(request) {
-  return querystring.parse(url.parse(request.url).query)
-}
 
 module.exports = async request => {
   const {key, org, project} = parseRequest(request)
