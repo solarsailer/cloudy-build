@@ -18,7 +18,7 @@ function toUrl(endpoint) {
   return new URL(endpoint, API_HOST).toString()
 }
 
-async function request(method, endpoint, key, params = {}) {
+async function get(endpoint, key, params = {}) {
   const url = toUrl(endpoint)
 
   const options = {
@@ -28,10 +28,22 @@ async function request(method, endpoint, key, params = {}) {
     params
   }
 
-  return axios[method](url, options)
+  return axios.get(url, options)
+}
+
+async function post(endpoint, key, data = {}) {
+  const url = toUrl(endpoint)
+
+  const options = {
+    headers: {
+      Authorization: toBasicAuth(key)
+    }
+  }
+
+  return axios.post(url, data, options)
 }
 
 module.exports = {
-  get: (endpoint, key, params) => request('get', endpoint, key, params),
-  post: (endpoint, key, params) => request('post', endpoint, key, params)
+  get,
+  post
 }
