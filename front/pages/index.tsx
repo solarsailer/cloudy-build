@@ -32,10 +32,8 @@ const Content = () => {
       <Field id="org" description="Your company name, probably.">
         Organization
       </Field>
-      <Field id="project">Project</Field>
-      <Field id="platform">Platform</Field>
 
-      <Button type="submit">Get Share Link</Button>
+      <Button type="submit">Find All Builds</Button>
     </Form>
   )
 }
