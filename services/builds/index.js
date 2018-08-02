@@ -1,18 +1,29 @@
-const getProjects = require('./src/projects')
-const getTargets = require('./src/targets')
-const getBuilds = require('./src/builds')
+const querystring = require('querystring')
+const url = require('url')
 
-const API_KEY = '3cc734e8e7c41a080149a3fead5e0363'
+const getBuilds = require('./src/builds')
 
 // -------------------------------------------------------------
 // Module.
 // -------------------------------------------------------------
 
-module.exports = async () => {
+function parseRequest(request) {
+  return querystring.parse(url.parse(request.url).query)
+}
+
+module.exports = async request => {
+  const {key, org, project} = parseRequest(request)
+
+  if (!key) {
+    return {code: 401, message: 'Unauthorized: no API Key provided.'}
+  }
+
+  if (!org) {
+    return {code: 401, message: 'Unauthorized: no organization provided.'}
+  }
+
   try {
-    const projects = await getProjects(API_KEY)
-    const targets = await getTargets(projects, API_KEY)
-    const builds = await getBuilds(targets, API_KEY)
+    const builds = await getBuilds(key, org, project)
     return builds
   } catch (e) {
     return {message: e.message}
