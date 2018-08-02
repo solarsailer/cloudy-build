@@ -1,5 +1,6 @@
 import React from 'react'
 
+import Form from '../components/Form'
 import Field from '../components/Field'
 import Button from '../components/Button'
 
@@ -7,55 +8,36 @@ import Button from '../components/Button'
 // Components.
 // -------------------------------------------------------------
 
-class Form extends React.Component<{}, {key: string; org: string}> {
-  state = {key: '', org: ''}
+function getBuilds() {
+  // Do Something.
+}
 
-  handleSubmit = e => {
-    e.preventDefault()
-    console.log(this.state)
-  }
+const Content = () => {
+  return (
+    <Form onReady={getBuilds}>
+      <Field
+        id="key"
+        placeholder="3cc734e8e7c41a080149a3fead5e0363"
+        description={
+          <>
+            Available in the{' '}
+            <a href="https://developer.cloud.unity3d.com/preferences/">
+              Unity Cloud Build preferences
+            </a>.
+          </>
+        }
+      >
+        API Key
+      </Field>
+      <Field id="org" description="Your company name, probably.">
+        Organization
+      </Field>
+      <Field id="project">Project</Field>
+      <Field id="platform">Platform</Field>
 
-  handleKeyChange = e => {
-    this.setState({key: e.target.value})
-  }
-
-  handleOrgChange = e => {
-    this.setState({org: e.target.value})
-  }
-
-  render() {
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <Field
-          id="org"
-          value={this.state.org}
-          onChange={this.handleOrgChange}
-          description="Your company name, probably."
-        >
-          Organization
-        </Field>
-
-        <Field
-          id="key"
-          value={this.state.key}
-          onChange={this.handleKeyChange}
-          placeholder="3cc734e8e7c41a080149a3fead5e0363"
-          description={
-            <>
-              Available in the{' '}
-              <a href="https://developer.cloud.unity3d.com/preferences/">
-                Unity Cloud Build preferences
-              </a>.
-            </>
-          }
-        >
-          API Key
-        </Field>
-
-        <Button type="submit">Get Latest Builds</Button>
-      </form>
-    )
-  }
+      <Button type="submit">Get Share Link</Button>
+    </Form>
+  )
 }
 
 // -------------------------------------------------------------
@@ -65,7 +47,7 @@ class Form extends React.Component<{}, {key: string; org: string}> {
 export default () => {
   return (
     <div>
-      <Form />
+      <Content />
     </div>
   )
 }
