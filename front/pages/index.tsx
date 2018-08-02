@@ -29,11 +29,19 @@ const Content = () => {
       >
         API Key
       </Field>
+
       <Field id="org" description="Your company name, probably.">
         Organization
       </Field>
 
-      <Button type="submit">Find All Builds</Button>
+      <Field
+        id="project"
+        description="Optional — will search all projects if empty."
+      >
+        Project
+      </Field>
+
+      <Button type="submit">Find Latest Builds</Button>
     </Form>
   )
 }
