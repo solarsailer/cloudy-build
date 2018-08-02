@@ -8,13 +8,9 @@ import Button from '../components/Button'
 // Components.
 // -------------------------------------------------------------
 
-function getBuilds() {
-  // Do Something.
-}
-
 const Content = () => {
   return (
-    <Form onReady={getBuilds}>
+    <Form action="/builds">
       <Field
         id="key"
         placeholder="3cc734e8e7c41a080149a3fead5e0363"
