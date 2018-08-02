@@ -2,6 +2,7 @@
   "private": true,
   "workspaces": [
     "front",
-    "services/builds"
+    "services/builds",
+    "services/share"
   ]
 }
