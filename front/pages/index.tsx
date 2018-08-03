@@ -42,7 +42,7 @@ const Content = () => {
         Project
       </Field>
 
-      <Button type="submit">Find Latest Builds</Button>
+      <Button type="submit">Show Latest Builds</Button>
     </Form>
   )
 }
