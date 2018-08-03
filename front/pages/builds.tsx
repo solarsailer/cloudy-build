@@ -86,7 +86,7 @@ interface BuildResponse {
 }
 
 export default class extends React.Component<any, BuildResponse> {
-  state = {data: [], hasError: false}
+  state = {data: [], hasError: false, message: null}
 
   static async getInitialProps({query}) {
     return {query}
@@ -110,8 +110,13 @@ export default class extends React.Component<any, BuildResponse> {
           </p>
 
           <p>
-            Check if your organization or API key is correct.<br />
-            <span>({this.state.message})</span>
+            Check if your organization or API key is correct.
+            {this.state.message && (
+              <>
+                <br />
+                <span>({this.state.message})</span>
+              </>
+            )}
           </p>
 
           <p>
