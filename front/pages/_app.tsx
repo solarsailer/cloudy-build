@@ -11,11 +11,11 @@ import Footer from '../components/Footer'
 // -------------------------------------------------------------
 
 export default class extends App {
-  static async getInitialProps({Component, req, context}) {
+  static async getInitialProps({Component, router, ctx}) {
     let pageProps = {}
 
     if (Component.getInitialProps) {
-      pageProps = await Component.getInitialProps(context)
+      pageProps = await Component.getInitialProps(ctx)
     }
 
     return {pageProps}
