@@ -1,9 +1,34 @@
+import React from 'react'
 import styled from 'styled-components'
-import builds from 'pages/builds'
+import axios from 'axios'
 
 import {tint} from 'polished'
 
 import {colors} from '../styles/config'
+
+import Button from './Button'
+import Spinner from './Spinner'
+
+// -------------------------------------------------------------
+// Functions.
+// -------------------------------------------------------------
+
+async function createLink(key, shareLink) {
+  const result = await axios
+    .get('http://localhost:3002/', {
+      params: {
+        key,
+        link: shareLink
+      }
+    })
+    .then(res => res.data)
+
+  if (result.code && result.code !== 200) {
+    return {data: '', hasError: true, message: result.message}
+  }
+
+  return {data: result.data, hasError: false}
+}
 
 // -------------------------------------------------------------
 // Components.
@@ -22,13 +47,6 @@ const Aside = styled.aside`
 
 const Main = styled.section`
   flex: 1;
-`
-
-const Download = styled.a`
-  display: block;
-
-  text-transform: uppercase;
-  cursor: pointer;
 `
 
 const Icon = styled.img`
@@ -90,6 +108,54 @@ const Commit = styled.p`
   text-transform: lowercase;
 `
 
+const DownloadLink = styled.a`
+  display: block;
+
+  text-transform: uppercase;
+  cursor: pointer;
+`
+
+class Download extends React.Component<any, any> {
+  state = {data: null, hasError: false, message: null, isLoading: false}
+
+  handleClick = e => {
+    e.preventDefault()
+
+    this.setState({isLoading: true})
+
+    createLink(
+      '/* TODO get key from context or pass this as a child to <Build />',
+      this.props.share
+    ).then(res => {
+      this.setState({...res, isLoading: false})
+    })
+  }
+
+  render() {
+    if (this.state.isLoading) {
+      return <Spinner />
+    }
+
+    if (this.state.data) {
+      return (
+        <DownloadLink href={this.state.data} target="_blank">
+          Open Link
+        </DownloadLink>
+      )
+    }
+
+    return (
+      <div>
+        <Button type="button" onClick={this.handleClick}>
+          {this.props.children}
+        </Button>
+
+        {this.state.hasError && <p>Error! Try again.</p>}
+      </div>
+    )
+  }
+}
+
 // -------------------------------------------------------------
 // Export.
 // -------------------------------------------------------------
@@ -130,7 +196,7 @@ export default (props: BuildParams) => {
           <Commit>{props.commit}</Commit>
         </Content>
       </Main>
-      <Download>Create Link</Download>
+      <Download share={props.share}>Create Link</Download>
     </BuildContainer>
   )
 }
