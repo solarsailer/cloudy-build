@@ -92,9 +92,7 @@ export default class extends React.Component<any, BuildResponse> {
     return {query}
   }
 
-  constructor(props) {
-    super(props)
-
+  componentDidMount() {
     this.request()
   }
 
