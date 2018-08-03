@@ -1,3 +1,4 @@
+import {MouseEventHandler} from 'react'
 import styled from 'styled-components'
 import {colors} from '../styles/config'
 
@@ -26,8 +27,12 @@ const Button = styled.button`
 // -------------------------------------------------------------
 
 type ButtonType = 'button' | 'submit' | 'reset'
-type Params = {type: ButtonType; children: string}
+type Params = {
+  type: ButtonType
+  children: string | React.ReactNode
+  onClick?: MouseEventHandler
+}
 
 export default (props: Params) => {
-  return <Button type={props.type}>{props.children}</Button>
+  return <Button {...props}>{props.children}</Button>
 }
