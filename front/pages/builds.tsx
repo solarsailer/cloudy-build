@@ -3,10 +3,33 @@ import styled from 'styled-components'
 import axios from 'axios'
 
 import Build from '../components/Build'
+import Spinner from '../components/Spinner'
 
 import {tint} from 'polished'
 
 import {colors} from '../styles/config'
+
+// -------------------------------------------------------------
+// Functions.
+// -------------------------------------------------------------
+
+async function getBuilds({key, org, project}): Promise<BuildResponse> {
+  const result = await axios
+    .get('http://localhost:3001/', {
+      params: {
+        key,
+        org,
+        project
+      }
+    })
+    .then(res => res.data)
+
+  if (result.code && result.code !== 200) {
+    return {data: [], hasError: true, message: result.message}
+  }
+
+  return {data: result.data, hasError: false}
+}
 
 // -------------------------------------------------------------
 // Components.
@@ -21,6 +44,15 @@ const Row = styled.li`
     margin: 0;
     padding: 0;
     border: none;
+  }
+`
+
+const LoadingBlock = styled.div`
+  text-align: center;
+
+  p {
+    font-size: 0.75em;
+    font-style: italic;
   }
 `
 
@@ -47,28 +79,32 @@ const ErrorBlock = styled.div`
 // Page.
 // -------------------------------------------------------------
 
-export default class extends React.Component<any, any> {
+interface BuildResponse {
+  data: Array<any>
+  hasError: boolean
+  message?: string
+}
+
+export default class extends React.Component<any, BuildResponse> {
+  state = {data: [], hasError: false}
+
   static async getInitialProps({query}) {
-    const result = await axios
-      .get('http://localhost:3001/', {
-        params: {
-          key: query.key,
-          org: query.org,
-          project: query.project
-        }
-      })
-      .then(res => res.data)
+    return {query}
+  }
 
-    if (result.code && result.code !== 200) {
-      return {builds: [], hasError: true, error: result.message}
-    }
+  constructor(props) {
+    super(props)
 
-    return {builds: result.data, hasError: false}
+    this.request()
+  }
+
+  request = () => {
+    this.setState({data: [], hasError: false})
+    getBuilds(this.props.query).then(res => this.setState({...res}))
   }
 
   render() {
-    console.log(this.props.builds)
-    if (this.props.hasError) {
+    if (this.state.hasError) {
       return (
         <ErrorBlock>
           <p className="main">
@@ -77,19 +113,31 @@ export default class extends React.Component<any, any> {
 
           <p>
             Check if your organization or API key is correct.<br />
-            <span>({this.props.error})</span>
+            <span>({this.state.message})</span>
           </p>
 
           <p>
-            <a href="/">Try Again</a>
+            <a href="#" onClick={this.request}>
+              Try Again
+            </a>{' '}
+            | <a href="/">Restart</a>
           </p>
         </ErrorBlock>
       )
     }
 
+    if (this.state.data.length === 0) {
+      return (
+        <LoadingBlock>
+          <Spinner />
+          <p>Looking for builds…</p>
+        </LoadingBlock>
+      )
+    }
+
     return (
       <ul>
-        {this.props.builds.map(x => (
+        {this.state.data.map(x => (
           <Row
             key={`${x.org}-${x.projectId}-${x.buildTypeId}-${x.buildNumber}`}
           >
