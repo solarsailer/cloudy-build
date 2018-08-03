@@ -32,7 +32,11 @@ const Content = () => {
 
       <Field
         id="project"
-        description="Optional — will search all projects if empty."
+        description={
+          <>
+            <strong>Optional</strong> — will search all projects if empty.
+          </>
+        }
         required={false}
       >
         Project

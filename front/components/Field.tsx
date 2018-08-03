@@ -31,6 +31,11 @@ const MainLabel = styled.label`
   flex: 1;
 `
 
+const Required = styled.span`
+  color: ${colors.brand};
+  font-weight: normal;
+`
+
 const MainInput = styled.input`
   width: 100%;
   padding: 1rem;
@@ -91,7 +96,10 @@ export default ({
   return (
     <Wrapper>
       <TopRow>
-        <MainLabel htmlFor={id}>{children}</MainLabel>
+        <MainLabel htmlFor={id}>
+          {children}
+          {required ? <Required>*</Required> : ''}
+        </MainLabel>
 
         <SaveWidget>
           <span>Save</span>
