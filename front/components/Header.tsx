@@ -17,6 +17,11 @@ const Title = styled.h1`
   color: ${colors.brand};
   font-weight: 900;
   text-transform: uppercase;
+
+  a {
+    border-bottom: none;
+    text-decoration: none;
+  }
 `
 
 // -------------------------------------------------------------
@@ -26,7 +31,9 @@ const Title = styled.h1`
 export default () => {
   return (
     <Header className="page-header" id="page_header">
-      <Title>Cloudy Build</Title>
+      <Title>
+        <a href="/">Cloudy Build</a>
+      </Title>
       <p>
         Get your latest{' '}
         <a href="https://unity3d.com/services/cloud-build">Unity Cloud Build</a>{' '}
