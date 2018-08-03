@@ -76,6 +76,7 @@ interface Parameters {
   description?: string | JSX.Element
   placeholder?: string
   onChange?: ChangeEventHandler<HTMLInputElement>
+  required?: boolean
 }
 
 export default ({
@@ -84,7 +85,8 @@ export default ({
   id,
   value,
   placeholder,
-  onChange
+  onChange,
+  required = true
 }: Parameters) => {
   return (
     <Wrapper>
@@ -99,7 +101,7 @@ export default ({
 
       <p>
         <MainInput
-          required
+          required={required}
           type="text"
           name={id}
           id={id}
