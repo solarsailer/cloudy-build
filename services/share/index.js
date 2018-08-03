@@ -7,7 +7,7 @@ const SHARE_URL = 'https://developer.cloud.unity3d.com/share/'
 // Module.
 // -------------------------------------------------------------
 
-module.exports = async request => {
+module.exports = async (request, response) => {
   const {key, link} = parseRequest(request)
 
   if (!key) {
@@ -17,6 +17,8 @@ module.exports = async request => {
   if (!link) {
     return {code: 401, message: 'Unauthorized: no share link provided.'}
   }
+
+  response.setHeader('Access-Control-Allow-Origin', '*')
 
   try {
     const shareId = await getShareId(key, link)

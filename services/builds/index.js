@@ -5,7 +5,7 @@ const getBuilds = require('./src/builds')
 // Module.
 // -------------------------------------------------------------
 
-module.exports = async request => {
+module.exports = async (request, response) => {
   const {key, org, project} = parseRequest(request)
 
   if (!key) {
@@ -15,6 +15,8 @@ module.exports = async request => {
   if (!org) {
     return {code: 401, message: 'Unauthorized: no organization provided.'}
   }
+
+  response.setHeader('Access-Control-Allow-Origin', '*')
 
   try {
     const builds = await getBuilds(key, org, project)
