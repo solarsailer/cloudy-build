@@ -29,8 +29,12 @@ const ErrorBlock = styled.div`
 
   color: ${tint(0.5, colors.page.content)};
 
-  .main {
+  p {
     margin-bottom: 2rem;
+  }
+
+  p:last-of-type {
+    margin: 0;
   }
 
   span {
@@ -59,17 +63,23 @@ export default class extends React.Component<any, any> {
       return {builds: [], hasError: true, error: result.message}
     }
 
-    return {builds: result, hasError: false}
+    return {builds: result.data, hasError: false}
   }
 
   render() {
+    console.log(this.props.builds)
     if (this.props.hasError) {
       return (
         <ErrorBlock>
           <p className="main">
-            Snap! We cannot find any build.<br />
+            <strong>Snap!</strong> We cannot find any build.
+          </p>
+
+          <p>
+            Check if your organization or API key is correct.<br />
             <span>({this.props.error})</span>
           </p>
+
           <p>
             <a href="/">Try Again</a>
           </p>
