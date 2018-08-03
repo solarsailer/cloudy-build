@@ -30,8 +30,7 @@ const RESET = css`
 `
 
 const BASIC_LINK = css`
-  a,
-  a:visited {
+  a {
     color: ${colors.brand};
     border-bottom: 1px dotted currentColor;
 
