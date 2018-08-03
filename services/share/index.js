@@ -1,4 +1,5 @@
 const parseRequest = require('../lib/params')
+const {wrapSuccess, wrapError} = require('../lib/response-wrapper')
 const getShareId = require('./src/share')
 
 const SHARE_URL = 'https://developer.cloud.unity3d.com/share/'
@@ -7,24 +8,29 @@ const SHARE_URL = 'https://developer.cloud.unity3d.com/share/'
 // Module.
 // -------------------------------------------------------------
 
+const error = (code, message) => wrapError(code, message, [])
+
 module.exports = async (request, response) => {
+  // Make CORS.
+  response.setHeader('Access-Control-Allow-Origin', '*')
+
+  // Parse params.
   const {key, link} = parseRequest(request)
 
   if (!key) {
-    return {code: 401, message: 'Unauthorized: no API Key provided.'}
+    return error(401, 'No API Key provided.')
   }
 
   if (!link) {
-    return {code: 401, message: 'Unauthorized: no share link provided.'}
+    return error(401, 'No share link provided.')
   }
-
-  response.setHeader('Access-Control-Allow-Origin', '*')
 
   try {
     const shareId = await getShareId(key, link)
     const shareLink = SHARE_URL + shareId
-    return {link: shareLink}
+
+    return wrapSuccess(shareLink)
   } catch (e) {
-    return {message: e.message}
+    return error(404, e.message)
   }
 }
