@@ -68,7 +68,15 @@ export default class extends React.Component<any, BuildResponse> {
 
   request = () => {
     this.setState({data: [], hasError: false})
-    getBuilds(this.props.query).then(res => this.setState({...res}))
+    getBuilds(this.props.query)
+      .then(res => this.setState({...res}))
+      .catch(e =>
+        this.setState({
+          data: [],
+          hasError: true,
+          message: e.message
+        })
+      )
   }
 
   render() {
