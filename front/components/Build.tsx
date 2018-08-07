@@ -54,7 +54,7 @@ const Icon = styled.img`
   width: auto;
   height: 7rem;
 
-  border-radius: 10px;
+  border-radius: 15px;
 `
 
 const Title = styled.h2`
