@@ -6,7 +6,7 @@ import {tint} from 'polished'
 
 import {colors} from '../styles/config'
 
-import Button from './Button'
+import {SmallButton} from './Button'
 import Spinner from './Spinner'
 
 // -------------------------------------------------------------
@@ -146,9 +146,9 @@ class Download extends React.Component<any, any> {
 
     return (
       <div>
-        <Button type="button" onClick={this.handleClick}>
+        <SmallButton type="button" onClick={this.handleClick}>
           {this.props.children}
-        </Button>
+        </SmallButton>
 
         {this.state.hasError && <p>Error! Try again.</p>}
       </div>
