@@ -1,30 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
-import axios from 'axios'
 
 import {SmallButton} from './Button'
 import Spinner from './Spinner'
-
-// -------------------------------------------------------------
-// Functions.
-// -------------------------------------------------------------
-
-async function createLink(key, shareLink) {
-  const result = await axios
-    .get('http://localhost:3002/', {
-      params: {
-        key,
-        link: shareLink
-      }
-    })
-    .then(res => res.data)
-
-  if (result.code && result.code !== 200) {
-    return {data: '', hasError: true, message: result.message}
-  }
-
-  return {data: result.data, hasError: false}
-}
+import {createLink} from '../services/create-link'
 
 // -------------------------------------------------------------
 // Components.

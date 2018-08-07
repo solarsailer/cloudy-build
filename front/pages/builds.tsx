@@ -1,35 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
-import axios from 'axios'
+import {tint} from 'polished'
 
 import Build from '../components/Build'
 import Spinner from '../components/Spinner'
-
-import {tint} from 'polished'
-
 import {colors} from '../styles/config'
-
-// -------------------------------------------------------------
-// Functions.
-// -------------------------------------------------------------
-
-async function getBuilds({key, org, project}): Promise<BuildResponse> {
-  const result = await axios
-    .get('http://localhost:3001/', {
-      params: {
-        key,
-        org,
-        project
-      }
-    })
-    .then(res => res.data)
-
-  if (result.code && result.code !== 200) {
-    return {data: [], hasError: true, message: result.message}
-  }
-
-  return {data: result.data, hasError: false}
-}
+import {getBuilds, BuildResponse} from '../services/get-builds'
 
 // -------------------------------------------------------------
 // Components.
@@ -78,12 +54,6 @@ const ErrorBlock = styled.div`
 // -------------------------------------------------------------
 // Page.
 // -------------------------------------------------------------
-
-interface BuildResponse {
-  data: Array<any>
-  hasError: boolean
-  message?: string
-}
 
 export default class extends React.Component<any, BuildResponse> {
   state = {data: [], hasError: false, message: null}
