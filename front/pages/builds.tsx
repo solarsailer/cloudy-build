@@ -144,7 +144,7 @@ export default class extends React.Component<any, BuildResponse> {
           <Row
             key={`${x.org}-${x.projectId}-${x.buildTypeId}-${x.buildNumber}`}
           >
-            <Build {...x} />
+            <Build {...x} query={this.props.query} />
           </Row>
         ))}
       </ul>

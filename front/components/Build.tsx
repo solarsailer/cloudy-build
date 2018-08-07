@@ -123,10 +123,7 @@ class Download extends React.Component<any, any> {
 
     this.setState({isLoading: true})
 
-    createLink(
-      '/* TODO get key from context or pass this as a child to <Build />',
-      this.props.share
-    ).then(res => {
+    createLink(this.props.query.key, this.props.share).then(res => {
       this.setState({...res, isLoading: false})
     })
   }
@@ -172,6 +169,9 @@ interface BuildParams {
   icon: string
   share: string
   commit: string
+  query: {
+    key: string
+  }
 }
 
 export default (props: BuildParams) => {
@@ -196,7 +196,9 @@ export default (props: BuildParams) => {
           <Commit>{props.commit}</Commit>
         </Content>
       </Main>
-      <Download share={props.share}>Create Link</Download>
+      <Download share={props.share} query={props.query}>
+        Create Link
+      </Download>
     </BuildContainer>
   )
 }
