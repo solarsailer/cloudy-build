@@ -94,6 +94,8 @@ export default class extends React.Component<Props, State> {
   componentDidMount() {
     const storedValue = localStorage.getItem(this.namespace)
 
+    // Only check for null to determine if a value has been saved.
+    // An empty string is considered as a saved value!
     if (storedValue !== null) this.setState({isSaved: true})
 
     this.setState({value: storedValue || ''})
