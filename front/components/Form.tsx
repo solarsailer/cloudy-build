@@ -29,7 +29,7 @@ function handleSubmit(e) {
     query = convertFormElements(target.elements)
   }
 
-  Router.push({pathname, query})
+  Router.push({pathname, query}, {pathname})
 }
 
 export default ({children, action}) => {
