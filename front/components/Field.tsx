@@ -1,4 +1,4 @@
-import {ChangeEventHandler} from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import {rgba, tint} from 'polished'
 
@@ -74,52 +74,108 @@ const Description = styled.p`
 // Export.
 // -------------------------------------------------------------
 
-interface Parameters {
+interface Props {
   id: string
   value?: string
   children: string
   description?: string | JSX.Element
   placeholder?: string
-  onChange?: ChangeEventHandler<HTMLInputElement>
   required?: boolean
 }
 
-export default ({
-  children,
-  description,
-  id,
-  value,
-  placeholder,
-  onChange,
-  required = true
-}: Parameters) => {
-  return (
-    <Wrapper>
-      <TopRow>
-        <MainLabel htmlFor={id}>
-          {children}
-          {required ? <Required>*</Required> : ''}
-        </MainLabel>
+interface State {
+  value: string
+  isSaved: boolean
+}
 
-        <SaveWidget>
-          <span>Save</span>
-          <input type="checkbox" />
-        </SaveWidget>
-      </TopRow>
+export default class extends React.Component<Props, State> {
+  state = {value: '', isSaved: false}
 
-      <p>
-        <MainInput
-          required={required}
-          type="text"
-          name={id}
-          id={id}
-          placeholder={placeholder}
-          value={value}
-          onChange={onChange}
-        />
-      </p>
+  componentDidMount() {
+    const storedValue = localStorage.getItem(this.namespace)
 
-      {description && <Description>{description}</Description>}
-    </Wrapper>
-  )
+    if (storedValue !== null) this.setState({isSaved: true})
+
+    this.setState({value: storedValue || ''})
+  }
+
+  saveValue(value) {
+    localStorage.setItem(this.namespace, value)
+  }
+
+  removeValue() {
+    localStorage.removeItem(this.namespace)
+  }
+
+  get namespace() {
+    return `cloudy-build-${this.props.id}`
+  }
+
+  // -------------------------------------------------------------
+  // Events.
+  // -------------------------------------------------------------
+
+  handleValueChange = e => {
+    const value = e.target.value
+
+    if (this.state.isSaved) {
+      this.saveValue(value)
+    }
+
+    this.setState({value})
+  }
+
+  handleSaveChange = e => {
+    const checked = e.target.checked
+
+    if (checked) {
+      this.saveValue(this.state.value)
+    } else {
+      this.removeValue()
+    }
+
+    this.setState({isSaved: checked})
+  }
+
+  // -------------------------------------------------------------
+  // Render.
+  // -------------------------------------------------------------
+
+  render() {
+    const {children, description, id, placeholder, required = true} = this.props
+
+    return (
+      <Wrapper>
+        <TopRow>
+          <MainLabel htmlFor={id}>
+            {children}
+            {required ? <Required>*</Required> : ''}
+          </MainLabel>
+
+          <SaveWidget>
+            <span>Save</span>
+            <input
+              type="checkbox"
+              checked={this.state.isSaved}
+              onChange={this.handleSaveChange}
+            />
+          </SaveWidget>
+        </TopRow>
+
+        <p>
+          <MainInput
+            required={required}
+            type="text"
+            name={id}
+            id={id}
+            placeholder={placeholder}
+            value={this.state.value}
+            onChange={this.handleValueChange}
+          />
+        </p>
+
+        {description && <Description>{description}</Description>}
+      </Wrapper>
+    )
+  }
 }
