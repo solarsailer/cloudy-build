@@ -12,10 +12,9 @@ export interface BuildResponse {
 
 export async function getBuilds({key, org, project}): Promise<BuildResponse> {
   const result = await axios
-    .get('http://localhost:3001/', {
+    .get(`/api/builds/${org}/`, {
       params: {
         key,
-        org,
         project
       }
     })

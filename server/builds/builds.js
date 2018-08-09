@@ -1,4 +1,4 @@
-const {get} = require('../../lib/request')
+const {get} = require('../lib/request')
 
 // -------------------------------------------------------------
 // Module.

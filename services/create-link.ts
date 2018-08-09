@@ -6,7 +6,7 @@ import axios from 'axios'
 
 export async function createLink(key, shareLink) {
   const result = await axios
-    .get('http://localhost:3002/', {
+    .get('/api/share/', {
       params: {
         key,
         link: shareLink

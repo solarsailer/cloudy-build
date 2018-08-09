@@ -1,6 +1,5 @@
 const {wrapSuccess, wrapError} = require('../lib/response-wrapper')
-const parseRequest = require('../lib/params')
-const getBuilds = require('./src/builds')
+const getBuilds = require('./builds')
 
 // -------------------------------------------------------------
 // Module.
@@ -8,13 +7,7 @@ const getBuilds = require('./src/builds')
 
 const error = (code, message) => wrapError(code, message, [])
 
-module.exports = async (request, response) => {
-  // Make CORS.
-  response.setHeader('Access-Control-Allow-Origin', '*')
-
-  // Find params.
-  const {key, org, project} = parseRequest(request)
-
+module.exports = async ({key, org, project}) => {
   if (!key) {
     return error(401, 'No API Key provided.')
   }

@@ -1,4 +1,4 @@
-const {post} = require('../../lib/request')
+const {post} = require('../lib/request')
 
 // -------------------------------------------------------------
 // Module.

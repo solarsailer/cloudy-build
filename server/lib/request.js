@@ -4,6 +4,10 @@ const axios = require('axios')
 
 const API_HOST = 'https://build-api.cloud.unity3d.com'
 
+// -------------------------------------------------------------
+// Module.
+// -------------------------------------------------------------
+
 function toBasicAuth(username, password = '') {
   const value = toBase64(`${username}:${password}`)
 
