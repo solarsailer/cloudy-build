@@ -29,7 +29,6 @@
     "@types/next": "latest",
     "@types/react": "^16.4.7",
     "babel-plugin-styled-components": "^1.5.1",
-    "concurrently": "^3.6.1",
     "nodemon": "^1.18.3"
   },
   "babel": {
