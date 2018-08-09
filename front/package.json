@@ -11,15 +11,14 @@
   },
   "keywords": [],
   "scripts": {
-    "start": "next",
-    "start:services": "concurrently 'cd ../services/builds/; yarn dev' 'cd ../services/share/; yarn dev'",
-    "boot": "concurrently --kill-others 'yarn start' 'yarn start:services'",
+    "start": "node server/index.js",
     "build": "next build",
-    "prod": "next build && next start"
+    "prod": "next build && NODE_ENV=production node server/index.js"
   },
   "dependencies": {
     "@zeit/next-typescript": "1.1.0",
     "axios": "^0.18.0",
+    "express": "^4.16.3",
     "next": "^6.1.1",
     "polished": "^1.9.3",
     "react": "^16.4.1",
