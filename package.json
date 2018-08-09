@@ -12,8 +12,9 @@
   "keywords": [],
   "scripts": {
     "start": "nodemon server/index.js",
+    "serve": "NODE_ENV=production node server/index.js",
     "build": "next build",
-    "prod": "next build && NODE_ENV=production node server/index.js"
+    "prod": "next build && yarn serve"
   },
   "dependencies": {
     "@zeit/next-typescript": "1.1.0",
