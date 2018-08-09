@@ -1,11 +1,39 @@
 import React from 'react'
 import styled from 'styled-components'
 import {tint} from 'polished'
+import axios from 'axios'
 
 import Build from '../components/Build'
 import Spinner from '../components/Spinner'
 import {colors} from '../styles/config'
-import {getBuilds, BuildResponse} from '../services/get-builds'
+
+// -------------------------------------------------------------
+// Functions.
+// -------------------------------------------------------------
+
+export interface BuildResponse {
+  data: Array<any>
+  hasError: boolean
+  message?: string
+}
+
+export async function getBuilds({key, org, project}): Promise<BuildResponse> {
+  const result = await axios
+    .get(`/api/builds/${org}/`, {
+      params: {
+        key,
+        project
+      }
+    })
+    .then(res => res.data)
+
+  if (result.code && result.code !== 200) {
+    return {data: [], hasError: true, message: result.message}
+  }
+
+  return {data: result.data, hasError: false}
+}
+
 
 // -------------------------------------------------------------
 // Components.
