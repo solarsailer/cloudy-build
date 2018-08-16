@@ -1,10 +1,17 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import {tint} from 'polished'
+import {tint, rgba} from 'polished'
 
 import LinkCreator from './LinkCreator'
 import {colors} from '../styles/config'
+
+// -------------------------------------------------------------
+// Constants.
+// -------------------------------------------------------------
+
+const XS_BREAKPOINT = '350px'
+const S_BREAKPOINT = '600px'
 
 // -------------------------------------------------------------
 // Components.
@@ -15,14 +22,27 @@ const BuildContainer = styled.div`
   align-items: center;
 
   line-height: normal;
+
+  @media (max-width: ${S_BREAKPOINT}) {
+    flex-direction: column;
+  }
 `
 
 const Aside = styled.aside`
   margin-right: 1rem;
+
+  @media (max-width: ${S_BREAKPOINT}) {
+    margin: 0;
+  }
 `
 
 const Main = styled.section`
   flex: 1;
+
+  @media (max-width: ${S_BREAKPOINT}) {
+    padding: 1rem 0 2rem;
+    text-align: center;
+  }
 `
 
 const Icon = styled.img`
@@ -55,6 +75,10 @@ const Title = styled.h2`
     font-size: 0.6em;
     font-weight: normal;
   }
+
+  @media (max-width: ${S_BREAKPOINT}) {
+    justify-content: center;
+  }
 `
 
 const Content = styled.div`
@@ -74,7 +98,7 @@ const Commit = styled.p`
 
   padding: 0 0.25rem;
 
-  color: ${tint(0.75, colors.brand)};
+  color: ${rgba(colors.brand, 0.75)};
 
   background-color: ${tint(0.05, colors.page.content)};
   border: 1px solid ${tint(0.5, colors.brand)};
@@ -82,6 +106,10 @@ const Commit = styled.p`
 
   font-family: monospace;
   text-transform: lowercase;
+
+  @media (max-width: ${XS_BREAKPOINT}) {
+    display: none;
+  }
 `
 
 // -------------------------------------------------------------
