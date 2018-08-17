@@ -1,4 +1,5 @@
 import React from 'react'
+import Router from 'next/router'
 import styled from 'styled-components'
 import {tint} from 'polished'
 import axios from 'axios'
@@ -34,6 +35,16 @@ export async function getBuilds({key, org, project}): Promise<BuildResponse> {
   return {data: result.data, hasError: false}
 }
 
+function redirect(target: string, res = null) {
+  if (res) {
+    res.writeHead(302, {
+      Location: target
+    })
+    res.end()
+  } else {
+    Router.push(target)
+  }
+}
 
 // -------------------------------------------------------------
 // Components.
@@ -86,7 +97,13 @@ const ErrorBlock = styled.div`
 export default class extends React.Component<any, BuildResponse> {
   state = {data: [], hasError: false, message: null}
 
-  static async getInitialProps({query}) {
+  static async getInitialProps({res, query}) {
+    // If the query is empty, redirect to homepage.
+    // This will likely happen after a refresh.
+    if (!query.key || !query.org) {
+      redirect('/', res)
+    }
+
     return {query}
   }
 
