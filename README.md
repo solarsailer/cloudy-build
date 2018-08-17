@@ -2,7 +2,7 @@
 
 > Fast UI for Unity Cloud Build.
 >
-> [cloudy-build.pxn.io](https://cloudy-build.pxn.io/).
+> [cloudy-build.pxn.io](https://cloudy-build.pxn.io/)
 
 # ![Cloudy Build](header.png)
 
