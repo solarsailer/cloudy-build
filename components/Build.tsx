@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 import {tint, rgba} from 'polished'
 
+import ImageSwapper from './ImageSwapper'
 import LinkCreator from './LinkCreator'
 import {colors} from '../styles/config'
 
@@ -12,6 +13,8 @@ import {colors} from '../styles/config'
 
 const XS_BREAKPOINT = '350px'
 const S_BREAKPOINT = '600px'
+
+const ICON_SIZE = '7rem'
 
 // -------------------------------------------------------------
 // Components.
@@ -48,7 +51,7 @@ const Main = styled.section`
 const Icon = styled.img`
   display: block;
   width: auto;
-  height: 7rem;
+  height: ${ICON_SIZE};
 
   border-radius: 15px;
 `
@@ -141,7 +144,9 @@ export default (props: BuildParams) => {
   return (
     <BuildContainer>
       <Aside>
-        <Icon src={props.icon} alt={iconLabel} title={iconLabel} />
+        <ImageSwapper src={props.icon} width={ICON_SIZE} height={ICON_SIZE}>
+          <Icon src={props.icon} alt={iconLabel} title={iconLabel} />
+        </ImageSwapper>
       </Aside>
       <Main>
         <Title>
