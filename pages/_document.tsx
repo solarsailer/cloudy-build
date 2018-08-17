@@ -17,7 +17,11 @@ const Meta = () => {
       <link rel="shortcut icon" href="/static/favicon.ico?v=0001" />
 
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
       <title>Cloudy Build</title>
+      <meta name="author" content="Matthieu Oger" />
+      <meta name="description" content="Fast UI for Unity Cloud Build." />
+      <meta name="keywords" content="unity, cloud, build, cloudy build" />
     </>
   )
 }
