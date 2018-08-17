@@ -9,7 +9,7 @@
 ## TODO
 
 - [ ] Change API Key field to a password field?
-- [ ] Add [Jest](https://jestjs.io/) and tests, tests, test. 😅
+- [ ] Add [Jest](https://jestjs.io/) and "tests, tests, tests". 😅
 - [ ] Add [Husky](https://www.npmjs.com/package/husky) to trigger `yarn test` before a `push`.
 - [ ] Add [CI](https://travis-ci.org/).
 - [ ] Improve aesthetics. It's a quick design I made one year or two ago, and it could be way better. Including the favicon. And animations.
