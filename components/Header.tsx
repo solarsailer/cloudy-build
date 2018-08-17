@@ -36,7 +36,9 @@ export default () => {
       </Title>
       <p>
         Get your latest{' '}
-        <a href="https://unity3d.com/services/cloud-build">Unity Cloud Build</a>{' '}
+        <a href="https://developer.cloud.unity3d.com/build/">
+          Unity Cloud Build
+        </a>{' '}
         install links in a few seconds.
       </p>
     </Header>
