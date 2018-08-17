@@ -1,4 +1,6 @@
 import React from 'react'
+import Link from 'next/link'
+import styled from 'styled-components'
 
 import Form from '../components/Form'
 import Field from '../components/Field'
@@ -7,6 +9,12 @@ import {Button} from '../components/Button'
 // -------------------------------------------------------------
 // Components.
 // -------------------------------------------------------------
+
+const Privacy = styled.p`
+  padding-top: 4rem;
+  font-size: 0.8em;
+  text-align: center;
+`
 
 const Content = () => {
   return (
@@ -19,7 +27,8 @@ const Content = () => {
             Available in the{' '}
             <a href="https://developer.cloud.unity3d.com/preferences/">
               Unity Cloud Build preferences
-            </a>.
+            </a>
+            .
           </>
         }
       >
@@ -43,6 +52,12 @@ const Content = () => {
       </Field>
 
       <Button type="submit">Show Latest Builds</Button>
+
+      <Privacy>
+        <Link href="/privacy">
+          <a>Privacy Policy</a>
+        </Link>
+      </Privacy>
     </Form>
   )
 }
