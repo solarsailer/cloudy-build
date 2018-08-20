@@ -1,9 +1,11 @@
+const compression = require('compression')
 const express = require('express')
 const {parse} = require('url')
 const next = require('next')
 
-const dev = process.env.NODE_ENV !== 'production'
-const app = next({dev})
+const isDev = process.env.NODE_ENV !== 'production'
+const isProd = !isDev
+const app = next({isDev})
 const handle = app.getRequestHandler()
 
 const getBuilds = require('./builds/index')
@@ -17,6 +19,10 @@ const query = req => Object.assign({}, req.query, req.params)
 
 app.prepare().then(() => {
   const server = express()
+
+  if (isProd) {
+    server.use(compression())
+  }
 
   // Custom routes.
   server.get('/api/builds/:org/', async (req, res) => {
