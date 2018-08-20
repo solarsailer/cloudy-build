@@ -24,6 +24,11 @@ const Text = styled.div`
     text-align: center;
     text-transform: uppercase;
   }
+
+  h2 {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    font-size: 1.2em;
+  }
 `
 
 // -------------------------------------------------------------
