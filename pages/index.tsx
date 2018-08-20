@@ -10,9 +10,10 @@ import {Button} from '../components/Button'
 // Components.
 // -------------------------------------------------------------
 
-const Privacy = styled.p`
+const About = styled.article`
   padding-top: 4rem;
   font-size: 0.8em;
+  font-style: italic;
   text-align: center;
 `
 
@@ -53,11 +54,14 @@ const Content = () => {
 
       <Button type="submit">Show Latest Builds</Button>
 
-      <Privacy>
-        <Link href="/privacy">
-          <a>Privacy Policy</a>
-        </Link>
-      </Privacy>
+      <About>
+        <p>
+          Cloudy Build don't store your data.{' '}
+          <Link href="/about">
+            <a>About.</a>
+          </Link>
+        </p>
+      </About>
     </Form>
   )
 }
