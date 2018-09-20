@@ -18,21 +18,21 @@
     "prod": "next build && yarn serve"
   },
   "dependencies": {
-    "@zeit/next-typescript": "1.1.0",
+    "@zeit/next-typescript": "1.1.1",
     "axios": "^0.18.0",
     "compression": "^1.7.3",
     "express": "^4.16.3",
-    "next": "^6.1.1",
-    "polished": "^1.9.3",
-    "react": "^16.4.1",
-    "react-dom": "^16.4.1",
-    "styled-components": "^3.3.3"
+    "next": "^7.0.0",
+    "polished": "^2.0.3",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "styled-components": "^3.4.9"
   },
   "devDependencies": {
-    "@types/next": "latest",
-    "@types/react": "^16.4.7",
-    "babel-plugin-styled-components": "^1.5.1",
-    "nodemon": "^1.18.3"
+    "@types/next": "6.1.6",
+    "@types/react": "^16.4.14",
+    "babel-plugin-styled-components": "^1.7.1",
+    "nodemon": "^1.18.4"
   },
   "babel": {
     "presets": [
