@@ -45,11 +45,11 @@ const Base = styled.button`
   text-transform: uppercase;
 `
 
-const ButtonStyled = Base.extend`
+const ButtonStyled = styled(Base)`
   padding: 1.5rem 3rem;
 `
 
-const SmallButtonStyled = Base.extend`
+const SmallButtonStyled = styled(Base)`
   padding: 1rem 1.5rem 0.8rem;
   font-size: 0.8em;
 `
