@@ -4,7 +4,6 @@
   "description": "Fast UI for Unity Cloud Build.",
   "license": "MIT",
   "private": true,
-  "homepage": "https://cloudy-build.pxn.io/",
   "repository": "https://github.com/solarsailer/cloudy-build/",
   "author": {
     "name": "Matthieu Oger",
