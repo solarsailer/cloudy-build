@@ -20,7 +20,7 @@
     "@zeit/next-typescript": "1.1.1",
     "axios": "^0.18.0",
     "compression": "^1.7.3",
-    "express": "^4.16.3",
+    "express": "^4.17.3",
     "next": "^7.0.0",
     "polished": "^2.0.3",
     "react": "^16.5.2",
